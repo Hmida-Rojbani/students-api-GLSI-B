@@ -12,4 +12,10 @@ app.get('/api/students', (req,res)=>{
     res.send(students);
 });
 
-app.listen(port, () => console.log(`Server on ${port}...`))
+app.get('/api/students/:id', (req,res)=>{
+    let student = students.find(s => s.id === parseInt(req.params.id))
+    if(!student)
+        return res.status(404).send('Student with this id is not found');
+    res.send(student);
+});
+app.listen(port, () => console.log(`Server on ${port}...`));
