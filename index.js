@@ -1,8 +1,14 @@
 const express = require('express');
 const Joi = require('joi');
+const config = require('config');
 const morgan = require('morgan')
 const port = process.env.PORT || 3000;
 const app = express();
+
+console.log('Application name :',config.get('app_name'));
+console.log('Application mode :',config.get('app_mode'));
+console.log('Application DB Url :',config.get('db.url'));
+console.log('Application DB password :',config.get('db.password'));
 
 app.use(express.json());
 if(app.get('env') === 'development'){

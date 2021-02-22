@@ -1,0 +1,6 @@
+{
+    "app_mode":"prod",
+    "db" : {
+        "url":"DB Prod url"
+    }
+}
