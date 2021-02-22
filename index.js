@@ -1,9 +1,16 @@
 const express = require('express');
 const Joi = require('joi');
+const morgan = require('morgan')
 const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+if(app.get('env') === 'development'){
+    app.use(morgan('dev'))
+}
+;
+
+
 
 var students = [
     {id : 1, name : "student 1"},
@@ -21,6 +28,8 @@ app.get('/api/students/:id', (req,res)=>{
         return res.status(404).send('Student with this id is not found');
     res.send(student);
 });
+
+
 
 const validation_schema = {
     name : Joi.string().max(50).min(3).required()
